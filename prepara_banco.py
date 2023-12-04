@@ -6,7 +6,7 @@ try:
       conn = mysql.connector.connect(
             host='127.0.0.1',
             user='root',
-            password='admin'
+            password=''
       )
 except mysql.connector.Error as err:
       if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
@@ -16,11 +16,11 @@ except mysql.connector.Error as err:
 
 cursor = conn.cursor()
 
-cursor.execute("DROP DATABASE IF EXISTS `jogoteca`;")
+cursor.execute("DROP DATABASE IF EXISTS 'jogoteca';")
 
 cursor.execute("CREATE DATABASE `jogoteca`;")
 
-cursor.execute("USE `jogoteca`;")
+cursor.execute("USE 'jogoteca';")
 
 # criando tabelas
 TABLES = {}
