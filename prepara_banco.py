@@ -16,11 +16,11 @@ except mysql.connector.Error as err:
 
 cursor = conn.cursor()
 
-cursor.execute("DROP DATABASE IF EXISTS 'jogoteca';")
+cursor.execute("DROP DATABASE IF EXISTS `jogoteca`;")
 
 cursor.execute("CREATE DATABASE `jogoteca`;")
 
-cursor.execute("USE 'jogoteca';")
+cursor.execute("USE `jogoteca`;")
 
 # criando tabelas
 TABLES = {}
@@ -57,9 +57,10 @@ for tabela_nome in TABLES:
 
 # inserindo usuarios
 usuario_sql = 'INSERT INTO usuarios (nome, nickname, senha) VALUES (%s, %s, %s)'
-usuarios = [
-      ("Val Nicolini", "VN", "Nico@13"),
-]
+usuarios = [("Val Nicolini", "VN", "1307"),
+            ("Giovana Ribeiro", "GR", "Gica")
+            ]
+
 cursor.executemany(usuario_sql, usuarios)
 
 cursor.execute('select * from jogoteca.usuarios')
