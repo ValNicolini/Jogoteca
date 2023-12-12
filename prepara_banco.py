@@ -1,5 +1,6 @@
 import mysql.connector
 from mysql.connector import errorcode
+from flask_bcrypt import generate_password_hash
 
 print("Conectando...")
 try:
@@ -57,10 +58,11 @@ for tabela_nome in TABLES:
 
 # inserindo usuarios
 usuario_sql = 'INSERT INTO usuarios (nome, nickname, senha) VALUES (%s, %s, %s)'
-usuarios = [("Val Nicolini", "VN", "1307"),
-            ("Giovana Ribeiro", "GR", "Gica")
-            ]
-
+usuarios = [
+      ("Bruno Divino", "BD", generate_password_hash("alohomora").decode('utf-8')),
+      ("Camila Ferreira", "Mila", generate_password_hash("paozinho").decode('utf-8')),
+      ("Guilherme Louro", "Cake", generate_password_hash("python_eh_vida").decode('utf-8'))
+]
 cursor.executemany(usuario_sql, usuarios)
 
 cursor.execute('select * from jogoteca.usuarios')
